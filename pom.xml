@@ -30,8 +30,8 @@
     </properties>
 
     <dependencies>
-        <!--此处放日志包，所有项目都要引用-->
-        <!-- 所有子项目的日志框架 -->
+<!--        此处放日志包，所有项目都要引用-->
+<!--         所有子项目的日志框架 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
@@ -47,12 +47,13 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        <!-- 具体的日志实现 -->
+<!--         具体的日志实现 -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -104,6 +105,8 @@
                 <artifactId>spark-streaming-kafka-0-10_2.12</artifactId>
                 <version>${spark.version}</version>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
