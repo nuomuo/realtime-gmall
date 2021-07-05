@@ -69,8 +69,6 @@ public class CanalClient {
 
         // 将数据发往 kafka
 
-
-
     }
 
     private static void handler(String tableName, CanalEntry.EventType eventType, List<CanalEntry.RowData> rowDatasList) {
