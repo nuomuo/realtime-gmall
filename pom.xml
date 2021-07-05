@@ -12,6 +12,7 @@
     <modules>
         <module>gmall-common</module>
         <module>gmall-realtime</module>
+        <module>gmall-cannal</module>
     </modules>
 
     <properties>

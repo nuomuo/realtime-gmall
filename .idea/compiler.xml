@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="gmall-realtime" />
         <module name="gmall-webapi" />
+        <module name="gmall-cannal" />
         <module name="gmall-common" />
       </profile>
     </annotationProcessing>
