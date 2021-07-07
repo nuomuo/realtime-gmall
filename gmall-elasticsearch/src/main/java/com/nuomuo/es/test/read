@@ -1,0 +1,42 @@
+{
+  "query": {
+    "bool": {
+      "filter": {
+        "term": {
+          "sex": "1"
+        }
+      },
+      "must": [
+        {
+          "match": {
+            "favo": "篮球"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "groupBySex": {
+      "terms": {
+        "field": "id",
+        "size": 10
+      },
+      "aggs": {
+        "maxAge": {
+          "max": {
+            "field": "age"
+          }
+        }
+      }
+    }
+  }
+}
+
+PUT student_index/_doc/1003
+{
+  "id": "1003",
+  "name": "wangwu",
+  "sex": 1,
+  "age": 17,
+  "favo": "滑冰,唱歌"
+}

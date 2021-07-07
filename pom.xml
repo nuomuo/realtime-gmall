@@ -13,6 +13,7 @@
         <module>gmall-common</module>
         <module>gmall-realtime</module>
         <module>gmall-cannal</module>
+        <module>gmall-elasticsearch</module>
     </modules>
 
     <properties>

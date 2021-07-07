@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="gmall-realtime" />
         <module name="gmall-webapi" />
+        <module name="gmall-elasticsearch" />
         <module name="gmall-cannal" />
         <module name="gmall-common" />
       </profile>
@@ -19,7 +20,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="gmall-webapi" options="" />
+      <module name="gmall-webapi" options="-parameters" />
     </option>
   </component>
 </project>

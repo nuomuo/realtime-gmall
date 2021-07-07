@@ -65,21 +65,21 @@ object DauHandler {
 
 
     // 方式三：每个批次创建一个 redis 连接
-//    logDStream.transform((rdd: RDD[StartUpLog]) => {
-//      val format = new SimpleDateFormat("yyyy-DD-mm")
-//      // 创建 redis 连接 在 driver 端进行
-//      val jedis = new Jedis(redis_host, redis_post)
-//      val keyName: String = "DAU:"+ format.format(new Date(System.currentTimeMillis()))
-//      val logs: util.Set[String] = jedis.smembers(keyName)
-//
-//      val mids: Broadcast[util.Set[String]] = ssc.sparkContext.broadcast(logs)
-//
-//      val midsRDD: RDD[StartUpLog] = rdd.filter((log: StartUpLog) => {
-//        !mids.value.contains(log.mid)
-//      })
-//      jedis.close()
-//      midsRDD
-//    })
+    logDStream.transform((rdd: RDD[StartUpLog]) => {
+      val format = new SimpleDateFormat("yyyy-DD-mm")
+      // 创建 redis 连接 在 driver 端进行
+      val jedis = new Jedis(redis_host, redis_post)
+      val keyName: String = "DAU:"+ format.format(new Date(System.currentTimeMillis()))
+      val logs: util.Set[String] = jedis.smembers(keyName)
+
+      val mids: Broadcast[util.Set[String]] = ssc.sparkContext.broadcast(logs)
+
+      val midsRDD: RDD[StartUpLog] = rdd.filter((log: StartUpLog) => {
+        !mids.value.contains(log.mid)
+      })
+      jedis.close()
+      midsRDD
+    })
 
   }
 

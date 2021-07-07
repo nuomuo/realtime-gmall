@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/gmall-cannal/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-elasticsearch/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-elasticsearch/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-realtime/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-realtime/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-webapi/src/main/java" charset="UTF-8" />
