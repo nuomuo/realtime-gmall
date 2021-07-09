@@ -55,6 +55,7 @@ object AlertApp {
 
     //7.筛选数据，首先用户得领优惠券，并且用户没有浏览商品行为（将符合这些行为的uid保存下来至set集合）
     val boolDStream: DStream[(Boolean, CouponAlertInfo)] = midToLogIterDStream.mapPartitions((iter: Iterator[(String, Iterable[EventLog])]) => {
+
       iter.map { case (mid, iter) =>
         //创建set集合用来保存uid
         val uids: util.HashSet[String] = new util.HashSet[String]()
