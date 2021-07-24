@@ -1,4 +1,14 @@
-spark-streaming realtime:
+### Flink 实时项目
+模块介绍：
+
+| 模块名                 | 功能简介                                                     |
+| ---------------------- | ------------------------------------------------------------ |
+| **flink-gmall-logger** | 日志服务器：处理日期请求，将数据发往Kafka，并另存储一份到本地 |
+
+
+
+### spark-streaming 实时项目
+
 - 应用一：实时日活
 
   使用 Redis 作为中间缓存实现 批次间的去重
@@ -17,7 +27,7 @@ spark-streaming realtime:
 
 
 
-模块介绍：
+**模块介绍：**
 
 gmall-canal: canal 客户端 将 Mysql 变化的数据 发送到 kafka
 

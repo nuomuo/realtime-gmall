@@ -10,6 +10,7 @@
         <module name="gmall-realtime" />
         <module name="gmall-webapi" />
         <module name="gmall-elasticsearch" />
+        <module name="flink-gmall-logger" />
         <module name="gmall-cannal" />
         <module name="gmall-common" />
       </profile>

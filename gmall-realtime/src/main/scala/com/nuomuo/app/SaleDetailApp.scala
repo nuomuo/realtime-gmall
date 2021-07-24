@@ -32,7 +32,8 @@ object SaleDetailApp {
     val detailKafkaDStream: InputDStream[ConsumerRecord[String, String]] = MyKafkaUtil.getKafkaStream(GmallConstants.KAFKA_TOPIC_ORDER_DETAIL, streamingContext)
 
     // 1 将 DStream 转化成 样例类
-    val orderInfoStream: DStream[(String, OrderInfo)] = orderKafkaDStream.mapPartitions((partition: Iterator[ConsumerRecord[String, String]]) => {
+    val orderInfoStream: DStream[(String, OrderInfo)] =
+      orderKafkaDStream.mapPartitions((partition: Iterator[ConsumerRecord[String, String]]) => {
       partition.map((record: ConsumerRecord[String, String]) => {
         val orderInfo: OrderInfo = JSON.parseObject(record.value(), classOf[OrderInfo])
         orderInfo.create_date = orderInfo.create_time.split(" ")(0)
@@ -40,7 +41,8 @@ object SaleDetailApp {
         (orderInfo.id, orderInfo)
       })
     })
-    val orderDetailStream: DStream[(String, OrderDetail)] = detailKafkaDStream.mapPartitions((partition: Iterator[ConsumerRecord[String, String]]) => {
+    val orderDetailStream: DStream[(String, OrderDetail)] =
+      detailKafkaDStream.mapPartitions((partition: Iterator[ConsumerRecord[String, String]]) => {
       partition.map((record: ConsumerRecord[String, String]) => {
         val orderDetail: OrderDetail = JSON.parseObject(record.value(), classOf[OrderDetail])
         (orderDetail.order_id, orderDetail)

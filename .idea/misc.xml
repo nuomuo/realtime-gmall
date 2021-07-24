@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/gmall-webapi/pom.xml" />
+        <option value="$PROJECT_DIR$/flink-gmall-logger/pom.xml" />
       </list>
     </option>
   </component>
