@@ -8,10 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gmall-realtime" />
-        <module name="gmall-webapi" />
         <module name="gmall-elasticsearch" />
         <module name="flink-gmall-logger" />
         <module name="gmall-cannal" />
+        <module name="gmall-webapi" />
+        <module name="flink-gmall-realtime" />
         <module name="gmall-common" />
       </profile>
     </annotationProcessing>

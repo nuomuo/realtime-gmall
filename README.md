@@ -7,7 +7,19 @@
 
 
 
-### spark-streaming 实时项目
+### Spark-streaming 实时项目
+
+模块介绍：
+
+| 模块名              | 功能简介                                                  |
+| ------------------- | --------------------------------------------------------- |
+| gmall-canal         | canal 客户端 将 Mysql 变化的数据 发送到 kafka             |
+| gmall-commom        | 想项目的通用数据，如 Kafka Topic 名、ElasticSearch 索引名 |
+| gmall-elasticsearch | ElasticSearch Api 测试                                    |
+| gmall-realtime      | 主函数入口                                                |
+| gmall-webapi        | 数据可视化接口                                            |
+
+具体需求实现和细节：
 
 - 应用一：实时日活
 
@@ -24,17 +36,3 @@
 - 应用四：实时灵活分析
 
   使用 Redis 实现 双流 join
-
-
-
-**模块介绍：**
-
-gmall-canal: canal 客户端 将 Mysql 变化的数据 发送到 kafka
-
-gmall-commom: 想项目的通用数据，如 Kafka Topic 名、ElasticSearch 索引名
-
-gmall-elasticsearch: ElasticSearch Api 测试
-
-gmall-realtime: 主函数入口
-
-gmall-webapi: 数据可视化接口

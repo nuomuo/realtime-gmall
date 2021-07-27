@@ -19,5 +19,4 @@ public class LoggerController {
 
         return "success";
     }
-
 }
