@@ -1,4 +1,4 @@
-package app;
+package app.ods;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.ververica.cdc.connectors.mysql.MySQLSource;
@@ -19,6 +19,9 @@ import org.apache.kafka.connect.data.Field;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.source.SourceRecord;
+import utils.MyKafkaUtils;
+
+import java.util.List;
 
 public class Flink_CDCWithCustomerSchemaTest {
     public static void main(String[] args) throws Exception {
@@ -49,7 +52,12 @@ public class Flink_CDCWithCustomerSchemaTest {
         streamSource.print();
 
 
-        // TODO Flink sql
+        streamSource.addSink(MyKafkaUtils.getFlinkKafkaProducer("ods_base_db"));
+
+
+
+
+        //  Flink sql
         /*
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
         tableEnv.executeSql("CREATE TABLE base_trademark (\n" +
@@ -90,40 +98,62 @@ public class Flink_CDCWithCustomerSchemaTest {
             //             valueSchema=Schema{mysql_binlog_source.gmall2020.user_info.Envelope:STRUCT}, timestamp=null, headers=ConnectHeaders(headers=)}
 
             // mysql_binlog_source.gmall2020.user_info
+            //构建结果对象
+            JSONObject result = new JSONObject();
+
+            //获取数据库名称&表名称
             String topic = sourceRecord.topic();
-            String[] arr = topic.split("\\.");
-            // gmall2020
-            String db = arr[1];
-            // user_info
-            String tableName = arr[2];
+            String[] fields = topic.split("\\.");
+            String database = fields[1];
+            String tableName = fields[2];
 
-            //获取操作类型 READ DELETE UPDATE CREATE
-            Envelope.Operation operation = Envelope.operationFor(sourceRecord);
-            String type = operation.toString().toLowerCase();
-            if ("create".equals(type)) type = "insert";
-
-            //获取值信息并转换为Struct类型
+            //获取数据
             Struct value = (Struct) sourceRecord.value();
 
-            //获取变化后的数据
+            //After
             Struct after = value.getStruct("after");
-
-            //创建JSON对象用于存储数据信息
             JSONObject data = new JSONObject();
-            if (after != null) {
+            if (after != null) { //delete数据,则after为null
                 Schema schema = after.schema();
-                for (Field field : schema.fields()) {
-                    data.put(field.name(), after.get(field.name()));
+                List<Field> fieldList = schema.fields();
+
+                for (int i = 0; i < fieldList.size(); i++) {
+                    Field field = fieldList.get(i);
+                    Object fieldValue = after.get(field);
+                    data.put(field.name(), fieldValue);
                 }
             }
 
-            // 创建JSON对象用于封装最终返回值数据信息
-            JSONObject result = new JSONObject();
-            result.put("operation", type);
-            result.put("database", db);
-            result.put("table", tableName);
+            //Before
+            Struct before = value.getStruct("before");
+            JSONObject beforeData = new JSONObject();
+            if (before != null) { //delete数据,则after为null
+                Schema schema = before.schema();
+                List<Field> fieldList = schema.fields();
+
+                for (int i = 0; i < fieldList.size(); i++) {
+                    Field field = fieldList.get(i);
+                    Object fieldValue = before.get(field);
+                    beforeData.put(field.name(), fieldValue);
+                }
+            }
+
+            //获取操作类型 CREATE UPDATE DELETE
+            Envelope.Operation operation = Envelope.operationFor(sourceRecord);
+            String type = operation.toString().toLowerCase();
+            if ("create".equals(type)) {
+                type = "insert";
+            }
+
+            //封装数据
+            result.put("database", database);
+            result.put("tableName", tableName);
             result.put("data", data);
-            // 发送数据至下游
+            result.put("before", beforeData);
+            result.put("type", type);
+            //result.put("ts", System.currentTimeMillis());
+
+            //输出封装好的数据
             collector.collect(result.toJSONString());
         }
 
