@@ -73,6 +73,7 @@ public class MyKafkaUtils {
         return new FlinkKafkaProducer<T>(DWD_DEFAULT_TOPIC,
                 serializationSchema,
                 properties,
+                // 两阶段提交
                 FlinkKafkaProducer.Semantic.EXACTLY_ONCE);
     }
 }

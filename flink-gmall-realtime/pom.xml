@@ -4,9 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-<groupId>com.nuomuo</groupId>
+
     <artifactId>flink-gmall-realtime</artifactId>
-<version>1.0-snapshot</version>
+    <parent>
+        <artifactId>realtime-gmall</artifactId>
+        <groupId>com.nuomuo</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
     <properties>
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -80,17 +85,17 @@
         </dependency>
 
 <!--        Flink默认使用的是slf4j记录日志，相当于一个日志的接口,我们这里使用log4j作为具体的日志实现-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.slf4j</groupId>-->
+<!--            <artifactId>slf4j-api</artifactId>-->
+<!--            <version>1.7.25</version>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.25</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.slf4j</groupId>-->
+<!--            <artifactId>slf4j-log4j12</artifactId>-->
+<!--            <version>1.7.25</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -127,7 +132,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>1.18.14</version>
         </dependency>
 
         <dependency>
@@ -147,16 +152,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
+
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>2.9.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.nuomuo</groupId>
+            <artifactId>gmall-realtime</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 

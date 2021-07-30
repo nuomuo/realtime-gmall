@@ -3,6 +3,7 @@ package app.dwddim;
 import bean.TableProcess;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.ververica.cdc.connectors.mysql.MySQLSource;
+import com.alibaba.ververica.cdc.connectors.mysql.table.StartupOptions;
 import com.alibaba.ververica.cdc.debezium.DebeziumSourceFunction;
 import com.sun.deploy.nativesandbox.NativeSandboxBroker;
 import func.DimSink;
@@ -66,6 +67,7 @@ public class BaseDBApp {
                 .password("111111")
                 .databaseList("gmall2020_realtime")
                 .tableList("gmall2020_realtime.table_process")
+                .startupOptions(StartupOptions.initial())
                 .deserializer(new TableProcessStreamDebeziumDeserializationSchema())
                 .build();
 

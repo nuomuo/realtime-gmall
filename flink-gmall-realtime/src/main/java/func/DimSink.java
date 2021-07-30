@@ -42,9 +42,9 @@ public class DimSink extends RichSinkFunction<JSONObject> {
             preparedStatement = connection.prepareStatement(upsertSql);
 
             // 如果当前数据为更新数据,则删除Redis中对应的数据
-            if ("update".equals(value.getString("type"))) {
-                DimUtil.delRedisDimInfo(tableName.toUpperCase(), data.getString("id"));
-            }
+//            if ("update".equals(value.getString("type"))) {
+//                DimUtil.delRedisDimInfo(tableName.toUpperCase(), data.getString("id"));
+//            }
 
             //3.执行插入数据操作
             preparedStatement.execute();

@@ -15,6 +15,7 @@
         <module>gmall-cannal</module>
         <module>gmall-elasticsearch</module>
         <module>flink-gmall-logger</module>
+        <module>flink-gmall-realtime</module>
     </modules>
 
     <properties>
