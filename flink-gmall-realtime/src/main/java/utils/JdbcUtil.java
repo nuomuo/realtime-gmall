@@ -10,7 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcUtil {
-
+    /**
+     *
+     * @param connection
+     * @param sql
+     * @param cls
+     * @param underScoreToCamel
+     * @param <T>
+     * @return
+     */
     public static <T> List<T> query(Connection connection, String sql, Class<T> cls, Boolean underScoreToCamel) {
 
         //创建结果集合
