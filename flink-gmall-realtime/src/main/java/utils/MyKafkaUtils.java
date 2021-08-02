@@ -76,4 +76,15 @@ public class MyKafkaUtils {
                 // 两阶段提交
                 FlinkKafkaProducer.Semantic.EXACTLY_ONCE);
     }
+
+    public static String getKafkaDDL(String topic, String groupId) {
+        return " ( " +
+                "  'connector' = 'kafka', " +
+                "  'topic' = '" + topic + "', " +
+                "  'properties.bootstrap.servers' = '" + brokerList + "', " +
+                "  'properties.group.id' = '" + groupId + "', " +
+                "  'format' = 'json' " +
+                ")";
+    }
+
 }

@@ -85,7 +85,7 @@ public class JdbcUtil {
         Connection connection = DriverManager.getConnection(GmallConfig.PHOENIX_SERVER);
 
         List<JSONObject> infoList = query(connection,
-                "select * from GMALL200821_REALTIME.DIM_BASE_CATEGORY1",
+                "select * from GMALL_REALTIME.DIM_BASE_CATEGORY1",
                 JSONObject.class,
                 false);
 
